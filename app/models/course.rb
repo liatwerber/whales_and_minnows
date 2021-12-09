@@ -1,6 +1,10 @@
 class Course < ApplicationRecord
   # Direct associations
 
+  has_many   :comments,
+             :class_name => "Review",
+             :dependent => :destroy
+
   has_many   :likes,
              :class_name => "Bookmark",
              :dependent => :destroy

@@ -1,6 +1,11 @@
 class Review < ApplicationRecord
   # Direct associations
 
+  belongs_to :photo,
+             :class_name => "Course",
+             :foreign_key => "course_id",
+             :counter_cache => :comments_count
+
   belongs_to :commenter,
              :class_name => "User",
              :foreign_key => "reviewer_id"
