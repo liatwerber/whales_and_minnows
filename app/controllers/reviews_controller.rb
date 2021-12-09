@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews
   def index
-    @reviews = current_user.comments.page(params[:page]).per(10)
+    @q = current_user.comments.ransack(params[:q])
+    @reviews = @q.result(:distinct => true).includes(:commenter, :photo).page(params[:page]).per(10)
   end
 
   # GET /reviews/1
