@@ -12,6 +12,8 @@ RSpec.describe Review, type: :model do
 
     describe "Validations" do
 
+    it { should validate_presence_of(:course_id) }
+
     it { should validate_presence_of(:reviewer_id) }
 
     end
