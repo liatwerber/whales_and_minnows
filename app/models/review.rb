@@ -5,6 +5,8 @@ class Review < ApplicationRecord
 
   # Validations
 
+  validates :reviewer_id, :presence => true
+
   # Scopes
 
   def to_s
