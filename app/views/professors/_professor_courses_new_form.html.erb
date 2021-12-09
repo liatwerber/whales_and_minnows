@@ -14,7 +14,7 @@
 
   <!-- Label and input for professor_id start -->
   <!-- Input for professor_id start -->
-  <%= f.hidden_field :professor_id, value: @professor.id %>
+    <%= f.collection_select :professor_id, User.all, :id, :to_s, {}, class: "form-control" %>
   <!-- Input for professor_id end -->
   <!-- Label and input for professor_id end -->
 
