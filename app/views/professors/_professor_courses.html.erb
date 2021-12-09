@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Courses
+
+    <a data-toggle="collapse" href="#professor_courses_new_form">
+      Add course
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @professor.courses.each do |course| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to course, course %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to course, method: :delete, data: { confirm: "Do you really want to delete this course" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="professor_courses_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
