@@ -1,6 +1,8 @@
 class Course < ApplicationRecord
   # Direct associations
 
+  belongs_to :professor
+
   has_many   :comments,
              :class_name => "Review",
              :dependent => :destroy
