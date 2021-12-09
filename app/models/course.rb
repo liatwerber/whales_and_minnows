@@ -5,6 +5,8 @@ class Course < ApplicationRecord
 
   # Validations
 
+  validates :professor_id, :presence => true
+
   # Scopes
 
   def to_s
