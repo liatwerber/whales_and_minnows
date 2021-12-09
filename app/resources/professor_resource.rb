@@ -6,6 +6,8 @@ class ProfessorResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :courses
+
   # Indirect associations
 
 end

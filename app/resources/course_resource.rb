@@ -10,6 +10,8 @@ class CourseResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :professor
+
   has_many   :comments,
              resource: ReviewResource
 
