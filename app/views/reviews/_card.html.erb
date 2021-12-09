@@ -12,12 +12,20 @@
 
       <dt>Reviewer</dt>
       <!-- Display reviewer_id start -->
-      <dd><%= review.reviewer_id %></dd>
+      <dd>
+        <% if @review.commenter.present? %>
+          <%= link_to review.commenter, review.commenter %>
+        <% end %>
+      </dd>
       <!-- Display reviewer_id end -->
 
       <dt>Course</dt>
       <!-- Display course_id start -->
-      <dd><%= review.course_id %></dd>
+      <dd>
+        <% if @review.photo.present? %>
+          <%= link_to review.photo, review.photo %>
+        <% end %>
+      </dd>
       <!-- Display course_id end -->
 
       <dt>Course rating</dt>

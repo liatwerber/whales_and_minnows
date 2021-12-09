@@ -12,7 +12,11 @@
 
       <dt>Professor</dt>
       <!-- Display professor_id start -->
-      <dd><%= course.professor_id %></dd>
+      <dd>
+        <% if @course.owner.present? %>
+          <%= link_to course.owner, course.owner %>
+        <% end %>
+      </dd>
       <!-- Display professor_id end -->
 
       <dt>Course name</dt>
