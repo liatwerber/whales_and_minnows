@@ -1,6 +1,11 @@
 class Bookmark < ApplicationRecord
   # Direct associations
 
+  belongs_to :photo,
+             :class_name => "Course",
+             :foreign_key => "course_id",
+             :counter_cache => :likes_count
+
   belongs_to :user
 
   # Indirect associations
