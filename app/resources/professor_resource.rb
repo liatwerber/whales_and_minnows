@@ -6,7 +6,7 @@ class ProfessorResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :courses
+  has_many :courses
 
   # Indirect associations
 
@@ -18,10 +18,9 @@ class ProfessorResource < ApplicationResource
     end
   end
 
-
   filter :user_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:fans).where(:bookmarks => {:user_id => value})
+      scope.eager_load(:fans).where(bookmarks: { user_id: value })
     end
   end
 end

@@ -31,10 +31,9 @@ class UserResource < ApplicationResource
     end
   end
 
-
   filter :professor_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:bookmarked_professors).where(:courses => {:professor_id => value})
+      scope.eager_load(:bookmarked_professors).where(courses: { professor_id: value })
     end
   end
 end

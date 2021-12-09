@@ -26,5 +26,4 @@ class CourseResource < ApplicationResource
 
   many_to_many :fans,
                resource: UserResource
-
 end

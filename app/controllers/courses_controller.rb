@@ -1,12 +1,14 @@
 class CoursesController < ApplicationController
-  before_action :current_user_must_be_course_owner, only: [:edit, :update, :destroy] 
+  before_action :current_user_must_be_course_owner,
+                only: %i[edit update destroy]
 
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: %i[show edit update destroy]
 
   # GET /courses
   def index
     @q = Course.ransack(params[:q])
-    @courses = @q.result(:distinct => true).includes(:owner, :likes, :comments, :professor, :fans).page(params[:page]).per(10)
+    @courses = @q.result(distinct: true).includes(:owner, :likes, :comments,
+                                                  :professor, :fans).page(params[:page]).per(10)
   end
 
   # GET /courses/1
@@ -21,17 +23,16 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /courses
   def create
     @course = Course.new(course_params)
 
     if @course.save
-      message = 'Course was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Course was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @course, notice: message
       end
@@ -43,7 +44,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   def update
     if @course.update(course_params)
-      redirect_to @course, notice: 'Course was successfully updated.'
+      redirect_to @course, notice: "Course was successfully updated."
     else
       render :edit
     end
@@ -53,30 +54,31 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     message = "Course was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to courses_url, notice: message
     end
   end
-
 
   private
 
   def current_user_must_be_course_owner
     set_course
     unless current_user == @course.owner
-      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+      redirect_back fallback_location: root_path,
+                    alert: "You are not authorized for that."
     end
   end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def course_params
-      params.require(:course).permit(:description, :professor_id, :course_name, :quarter, :course_time)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def course_params
+    params.require(:course).permit(:description, :professor_id, :course_name,
+                                   :quarter, :course_time)
+  end
 end

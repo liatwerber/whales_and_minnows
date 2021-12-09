@@ -1,36 +1,35 @@
 class User < ApplicationRecord
-  
   include JwtToken
-# Direct associations
+  # Direct associations
 
   has_many   :own_photos,
-             :class_name => "Course",
-             :foreign_key => "professor_id",
-             :dependent => :destroy
+             class_name: "Course",
+             foreign_key: "professor_id",
+             dependent: :destroy
 
   has_many   :comments,
-             :class_name => "Review",
-             :foreign_key => "reviewer_id",
-             :dependent => :destroy
+             class_name: "Review",
+             foreign_key: "reviewer_id",
+             dependent: :destroy
 
   has_many   :bookmarks,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :bookmarked_courses,
-             :through => :bookmarks,
-             :source => :photo
+             through: :bookmarks,
+             source: :photo
 
   has_many   :bookmarked_professors,
-             :through => :bookmarked_courses,
-             :source => :professor
+             through: :bookmarked_courses,
+             source: :professor
 
   # Validations
 
-  validates :username, :uniqueness => true
+  validates :username, uniqueness: true
 
-  validates :username, :presence => true
+  validates :username, presence: true
 
   # Scopes
 
