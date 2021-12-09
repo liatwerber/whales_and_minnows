@@ -10,6 +10,10 @@ class CourseResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :owner,
+             resource: UserResource,
+             foreign_key: :professor_id
+
   # Indirect associations
 
 end

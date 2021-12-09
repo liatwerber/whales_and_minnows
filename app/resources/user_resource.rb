@@ -8,6 +8,10 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :own_photos,
+             resource: CourseResource,
+             foreign_key: :professor_id
+
   has_many   :comments,
              resource: ReviewResource,
              foreign_key: :reviewer_id
