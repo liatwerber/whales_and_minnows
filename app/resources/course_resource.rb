@@ -10,6 +10,9 @@ class CourseResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :comments,
+             resource: ReviewResource
+
   has_many   :likes,
              resource: BookmarkResource
 
