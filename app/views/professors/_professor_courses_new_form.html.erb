@@ -13,9 +13,9 @@
   <!-- Label and input for description end -->
 
   <!-- Label and input for professor_id start -->
-  <!-- Input for professor_id start -->
-    <%= f.collection_select :professor_id, User.all, :id, :to_s, {}, class: "form-control" %>
-  <!-- Input for professor_id end -->
+  <!-- Input for "professor_id" start -->
+  <%= f.hidden_field :professor_id, value: current_user.id %>
+  <!-- Input for "professor_id" end -->
   <!-- Label and input for professor_id end -->
 
   <!-- Label and input for course_name start -->
