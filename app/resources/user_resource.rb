@@ -20,6 +20,9 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :bookmarked_courses,
+               resource: CourseResource
+
   has_many :bookmarked_professors, resource: ProfessorResource do
     assign_each do |user, professors|
       professors.select do |p|
