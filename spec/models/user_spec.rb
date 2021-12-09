@@ -14,6 +14,8 @@ RSpec.describe User, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:bookmarked_professors) }
+
     end
 
     describe "Validations" do

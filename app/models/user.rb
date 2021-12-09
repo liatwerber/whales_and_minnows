@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :bookmarked_professors,
+             :through => :bookmarked_courses,
+             :source => :professor
+
   # Validations
 
   validates :username, :uniqueness => true

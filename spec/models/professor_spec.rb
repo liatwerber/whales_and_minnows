@@ -10,6 +10,8 @@ RSpec.describe Professor, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:fans) }
+
     end
 
     describe "Validations" do
