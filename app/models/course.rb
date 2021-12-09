@@ -18,6 +18,10 @@ class Course < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :fans,
+             :through => :likes,
+             :source => :user
+
   # Validations
 
   validates :professor_id, :presence => true
