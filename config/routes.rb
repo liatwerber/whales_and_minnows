@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "courses#index"
   resources :professors
   resources :reviews
   resources :bookmarks
