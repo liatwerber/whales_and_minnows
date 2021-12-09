@@ -1,0 +1,31 @@
+<% was_validated = professor.errors.any? %>
+
+<%= form_with(model: professor, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for professor_name start -->
+  <div class="form-group">
+    <% professor_name_class = "form-control" %>
+    <% professor_name_was_invalid = professor.errors.include?(:professor_name) %>
+
+    <% if was_validated %>
+      <% if professor_name_was_invalid %>
+        <% professor_name_class << " is-invalid" %>
+      <% else %>
+        <% professor_name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :professor_name %>
+    <!-- Input for professor_name start -->
+    <%= f.text_field :professor_name, class: professor_name_class, placeholder: "Enter professor name" %>
+    <!-- Input for professor_name end -->
+    <% if professor_name_was_invalid %>
+      <% professor.errors.full_messages_for(:professor_name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for professor_name end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
