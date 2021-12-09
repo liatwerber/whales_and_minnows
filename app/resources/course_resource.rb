@@ -10,6 +10,9 @@ class CourseResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :likes,
+             resource: BookmarkResource
+
   belongs_to :owner,
              resource: UserResource,
              foreign_key: :professor_id

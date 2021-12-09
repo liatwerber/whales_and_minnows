@@ -7,6 +7,10 @@ class BookmarkResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :photo,
+             resource: CourseResource,
+             foreign_key: :course_id
+
   belongs_to :user
 
   # Indirect associations
