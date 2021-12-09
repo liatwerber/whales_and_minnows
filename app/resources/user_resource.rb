@@ -20,4 +20,18 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :bookmarked_professors, resource: ProfessorResource do
+    assign_each do |user, professors|
+      professors.select do |p|
+        p.id.in?(user.bookmarked_professors.map(&:id))
+      end
+    end
+  end
+
+
+  filter :professor_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:bookmarked_professors).where(:courses => {:professor_id => value})
+    end
+  end
 end
