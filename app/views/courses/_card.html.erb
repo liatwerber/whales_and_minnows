@@ -39,16 +39,20 @@
 
       <!-- Edit link course start -->
       <div class="col">
-        <%= link_to edit_course_url(course), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @course.owner %>
+          <%= link_to edit_course_url(course), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link course end -->
 
       <!-- Delete link course start -->
       <div class="col">
-        <%= link_to course, method: :delete, data: { confirm: "Do you really want to delete this course?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @course.owner %>
+          <%= link_to course, method: :delete, data: { confirm: "Do you really want to delete this course?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link course end -->

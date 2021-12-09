@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_action :current_user_must_be_course_owner, only: [:edit, :update, :destroy] 
+
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -59,6 +61,14 @@ class CoursesController < ApplicationController
 
 
   private
+
+  def current_user_must_be_course_owner
+    set_course
+    unless current_user == @course.owner
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
