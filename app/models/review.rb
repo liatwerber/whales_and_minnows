@@ -1,6 +1,10 @@
 class Review < ApplicationRecord
   # Direct associations
 
+  belongs_to :commenter,
+             :class_name => "User",
+             :foreign_key => "reviewer_id"
+
   # Indirect associations
 
   # Validations
