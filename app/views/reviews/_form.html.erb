@@ -1,7 +1,6 @@
 <% was_validated = review.errors.any? %>
 
 <%= form_with(model: review, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for body start -->
   <div class="form-group">
     <% body_class = "form-control" %>
     <% body_was_invalid = review.errors.include?(:body) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :body %>
-    <!-- Input for body start -->
     <%= f.text_area :body, class: body_class, placeholder: "Enter body" %>
-    <!-- Input for body end -->
     <% if body_was_invalid %>
       <% review.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,13 +23,7 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for body end -->
-  <!-- Label and input for reviewer_id start -->
-  <!-- Input for "reviewer_id" start -->
   <%= f.hidden_field :reviewer_id, value: current_user.id %>
-  <!-- Input for "reviewer_id" end -->
-  <!-- Label and input for reviewer_id end -->
-  <!-- Label and input for course_id start -->
   <div class="form-group">
     <% course_class = "form-control" %>
     <% course_was_invalid = review.errors.include?(:course) %>
@@ -46,9 +37,7 @@
     <% end %>
 
     <%= f.label :course_id %>
-    <!-- Input for course_id start -->
     <%= f.collection_select :course_id, Course.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for course_id end -->
     <% if course_was_invalid %>
       <% review.errors.full_messages_for(:course).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -57,8 +46,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for course_id end -->
-  <!-- Label and input for course_rating start -->
   <div class="form-group">
     <% course_rating_class = "form-control" %>
     <% course_rating_was_invalid = review.errors.include?(:course_rating) %>
@@ -72,9 +59,7 @@
     <% end %>
 
     <%= f.label :course_rating %>
-    <!-- Input for course_rating start -->
     <%= f.number_field :course_rating, class: course_rating_class, placeholder: "Enter course rating" %>
-    <!-- Input for course_rating end -->
     <% if course_rating_was_invalid %>
       <% review.errors.full_messages_for(:course_rating).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -83,6 +68,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for course_rating end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

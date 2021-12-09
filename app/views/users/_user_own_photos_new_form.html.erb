@@ -1,52 +1,30 @@
-<!-- Form course start -->
 <%= form_with(model: @course, local: true) do |f| %>
-<!-- Form course end -->
 
-  <!-- Label and input for description start -->
   <div class="form-group">
     <%= f.label :description %>
 
-    <!-- Input for description start -->
     <%= f.text_field :description, class: "form-control" %>
-    <!-- Input for description end -->
   </div>
-  <!-- Label and input for description end -->
 
-  <!-- Label and input for professor_id start -->
-  <!-- Input for professor_id start -->
   <%= f.hidden_field :professor_id, value: @user.id %>
-  <!-- Input for professor_id end -->
-  <!-- Label and input for professor_id end -->
 
-  <!-- Label and input for course_name start -->
   <div class="form-group">
     <%= f.label :course_name %>
 
-    <!-- Input for course_name start -->
     <%= f.text_field :course_name, class: "form-control" %>
-    <!-- Input for course_name end -->
   </div>
-  <!-- Label and input for course_name end -->
 
-  <!-- Label and input for quarter start -->
   <div class="form-group">
     <%= f.label :quarter %>
 
-    <!-- Input for quarter start -->
     <%= f.text_field :quarter, class: "form-control" %>
-    <!-- Input for quarter end -->
   </div>
-  <!-- Label and input for quarter end -->
 
-  <!-- Label and input for course_time start -->
   <div class="form-group">
     <%= f.label :course_time %>
 
-    <!-- Input for course_time start -->
     <%= f.text_field :course_time, class: "form-control" %>
-    <!-- Input for course_time end -->
   </div>
-  <!-- Label and input for course_time end -->
 
   <%= f.submit "Create course", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

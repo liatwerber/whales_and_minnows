@@ -6,33 +6,23 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Description</dt>
-      <!-- Display description start -->
       <dd><%= course.description %></dd>
-      <!-- Display description end -->
 
       <dt>Professor</dt>
-      <!-- Display professor_id start -->
       <dd>
         <% if @course.owner.present? %>
           <%= link_to course.owner, course.owner %>
         <% end %>
       </dd>
-      <!-- Display professor_id end -->
 
       <dt>Course name</dt>
-      <!-- Display course_name start -->
       <dd><%= course.course_name %></dd>
-      <!-- Display course_name end -->
 
       <dt>Quarter</dt>
-      <!-- Display quarter start -->
       <dd><%= course.quarter %></dd>
-      <!-- Display quarter end -->
 
       <dt>Course time</dt>
-      <!-- Display course_time start -->
       <dd><%= course.course_time %></dd>
-      <!-- Display course_time end -->
 
     </dl>
 
@@ -41,7 +31,6 @@
         <%= link_to_show_or_back course, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link course start -->
       <div class="col">
         <% if current_user == @course.owner %>
           <%= link_to edit_course_url(course), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -49,9 +38,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link course end -->
 
-      <!-- Delete link course start -->
       <div class="col">
         <% if current_user == @course.owner %>
           <%= link_to course, method: :delete, data: { confirm: "Do you really want to delete this course?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -59,7 +46,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link course end -->
     </div>
   </div>
 
