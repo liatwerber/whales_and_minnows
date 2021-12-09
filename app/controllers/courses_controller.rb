@@ -8,6 +8,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @review = Review.new
+    @bookmark = Bookmark.new
   end
 
   # GET /courses/new
@@ -24,7 +26,12 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to @course, notice: 'Course was successfully created.'
+      message = 'Course was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @course, notice: message
+      end
     else
       render :new
     end

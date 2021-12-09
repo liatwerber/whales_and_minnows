@@ -1,0 +1,41 @@
+<!-- Form review start -->
+<%= form_with(model: @review, local: true) do |f| %>
+<!-- Form review end -->
+
+  <!-- Label and input for body start -->
+  <div class="form-group">
+    <%= f.label :body %>
+    <!-- Input for body start -->
+    <%= f.text_area :body, rows: "3", class: "form-control" %>
+    <!-- Input for body end -->
+  </div>
+  <!-- Label and input for body end -->
+
+  <!-- Label and input for reviewer_id start -->
+  <div class="form-group">
+    <%= f.label :reviewer_id %>
+
+    <!-- Input for reviewer_id start -->
+    <%= f.text_field :reviewer_id, class: "form-control" %>
+    <!-- Input for reviewer_id end -->
+  </div>
+  <!-- Label and input for reviewer_id end -->
+
+  <!-- Label and input for course_id start -->
+  <!-- Input for course_id start -->
+  <%= f.hidden_field :course_id, value: @course.id %>
+  <!-- Input for course_id end -->
+  <!-- Label and input for course_id end -->
+
+  <!-- Label and input for course_rating start -->
+  <div class="form-group">
+    <%= f.label :course_rating %>
+
+    <!-- Input for course_rating start -->
+    <%= f.text_field :course_rating, class: "form-control" %>
+    <!-- Input for course_rating end -->
+  </div>
+  <!-- Label and input for course_rating end -->
+
+  <%= f.submit "Create review", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
